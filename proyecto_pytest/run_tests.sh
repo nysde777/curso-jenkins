@@ -2,13 +2,13 @@
 
 echo " Iniciando ejecución de pruebas en Jenkins..."
 
-# ✅ Verificar si el entorno virtual existe
+# Verificar si el entorno virtual existe
 if [ ! -d "venv" ]; then
     echo " Entorno virtual no encontrado. Creándolo..."
     python3 -m venv venv
 fi
 
-# ✅ Activar el entorno virtual correctamente
+# Activar el entorno virtual correctamente
 if [ -f "venv/bin/activate" ]; then
     source venv/bin/activate
 elif [ -f "venv/Scripts/activate" ]; then  # Para Windows
@@ -18,13 +18,15 @@ else
     exit 1
 fi
 
-# ✅ Verificar si `pip` está instalado correctamente
-echo "📦 Instalando dependencias..."
+# Verificar si `pip` está instalado correctamente
+echo "Instalando dependencias..."
 pip install --upgrade pip --break-system-packages
 pip install -r requirements.txt --break-system-packages
 
-# ✅ Ejecutar las pruebas
+mkdir -p reports
+
+# Ejecutar las pruebas
 echo "🛠 Ejecutando pruebas con pytest..."
 venv/bin/python -m pytest tests/ --junitxml=reports/test-results.xml --html=reports/report.html --self-contained-html
 
-echo "✅ Pruebas finalizadas. Reportes en reports/"
+echo "Pruebas finalizadas. Reportes en reports/"
