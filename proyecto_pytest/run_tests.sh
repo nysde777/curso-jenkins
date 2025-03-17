@@ -27,6 +27,6 @@ mkdir -p reports
 
 # Ejecutar las pruebas
 echo "🛠 Ejecutando pruebas con pytest..."
-venv/bin/python -m pytest tests/ --junitxml=reports/test-results.xml --html=reports/report.html --self-contained-html
+python3 -m pytest tests/ --junitxml=reports/test-results.xml --html=reports/report.html --self-contained-html
 
 echo "Pruebas finalizadas. Reportes en reports/"
